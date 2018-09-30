@@ -111,7 +111,7 @@ if [ -f /data/media/0/MidnightMain/MidnightMedia/currently_applied_media.txt ]; 
     MEDIATEXT="$( cat /data/media/0/MidnightMain/MidnightMedia/currently_applied_media.txt | tr -d ' ' )"
     MEDIA="$( echo $MEDIATEXT | cut -d ']' -f 2 )"
     ui_print " [+] Currently Applied Media: $MEDIA"
-    ui_print " [+] Would you like to restore this font?"
+    ui_print " [+] Would you like to restore this file?"
     ui_print " [!] IF YOU DONT HAVE A BACKUP, YOU NEED AN INTERNET CONNECTION!"
     ui_print " [+] Vol+ = Yes, Vol- = No"
     if $FUNCTION; then
