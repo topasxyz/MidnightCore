@@ -130,7 +130,7 @@ check_stored() {
         mkdir $MODDIR/media > /dev/null 2>&1
         dir=pwd
         cd $MEDIABACKUP
-        tar -xzf "$MEDIA22.tar.gz" -C $MODDIR/media
+        tar -xzf "$MEDIA2.tar.gz" -C $MODDIR/media
         if [ $? != 0 ]; then
             show_error "Backup not restored" "Unknown" "Report error on XDA thread"
         fi
