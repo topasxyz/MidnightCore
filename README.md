@@ -7,9 +7,7 @@ This module is an All-In-One package for the MidnightModule series. It currently
 * This Package allows you to systemless-ly switch between fonts On-The-Go. Fonts are downloaded, applied and cleaned up at the same time, so no font zips are left lying around. Choose from over 40 Fonts!
 ### MidnightMedia
 * This package allows you to Systemless-ly switch Media files such as boot animations, System UI sounds, lock screen sounds etc. Just a quick Reboot and you're good to go! Choose from a range of devices to apply files from!
-### MidnightMake: MidnightFonts Add-On(Under Re-design!)
-* A simple add-on for MidnightFonts that allows you to create recovery flashable zips of the fonts available. This is for those who are switching ROM's or are leaving root behind or whatever reason!
-### MidnightMisc(Under Re-design!)
+### MidnightMisc
 * This package gives users a couple of tools and utilities that make debugging and other things easier. It is a home for any modifications or tools that do not need a home of their own. Will be regularly updated with user requests!
 ### MidnightDNS(Under Re-design!)
 * This package allows you to systemlessly change your DNS server for speed, security, protection or privacy benefits.
