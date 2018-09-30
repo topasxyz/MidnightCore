@@ -25,7 +25,7 @@ fi
 #==================================
 magisk=/sbin/.core/img
 MODDIR=$magisk/MidnightCore/system
-version="$( cat $magisk/MidnightCore/module.prop | grep version | cut -d '=' -f 2 )"
+version="$( cat $magisk/MidnightCore/module.prop | grep "version=" | cut -d '=' -f 2 )"
 updated="$( cat $magisk/MidnightCore/module.prop | grep updated | cut -d '=' -f 2 )"
 fonts_frontend=/system/$bin/midnight_fonts_frontend
 fonts_backend=/system/$bin/midnight_fonts_backend
