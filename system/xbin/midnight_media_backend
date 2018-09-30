@@ -31,34 +31,12 @@ main_download() {
     case $BACKUP in
         1)
             echo "[+] Backing Up file: $MEDIA to: $MEDIABACKUP"
-			if [ "$INPUT" == "b" ]; then
-				if [ -f $MODDIR/media/bootanimation.zip ]; then
-					dir=pwd
-					cd $MEDIABACKUP > /dev/null 2>&1
-					tar -czf "$MEDIA2.tar.gz" -C $MODDIR/media .
-					if [ $? != 0 ]; then
-						show_error "Backup not created" "Unknown" "Report error on XDA thread"
-					fi
-				fi
-			elif [ "$INPUT" == "s" ]; then
-				if [ -d $MODDIR/media/audio ]; then
-					dir=pwd
-					cd $MEDIABACKUP > /dev/null 2>&1
-					tar -czf "$MEDIA2.tar.gz" -C $MODDIR/media .
-					if [ $? != 0 ]; then
-						show_error "Backup not created" "Unknown" "Report error on XDA thread"
-					fi
-				fi
-			elif [ "$INPUT" == "m" ]; then
-				if [ -d $MODDIR/media/audio ] || [ -f $MODDIR/media/bootanimation.zip ]; then
-					dir=pwd
-					cd $MEDIABACKUP > /dev/null 2>&1
-					tar -czf "$MEDIA2.tar.gz" -C $MODDIR/media .
-					if [ $? != 0 ]; then
-						show_error "Backup not created" "Unknown" "Report error on XDA thread"
-					fi
-				fi
-			fi
+            dir=pwd
+            cd $MEDIABACKUP > /dev/null 2>&1
+            tar -czf "$MEDIA2.tar.gz" -C $MODDIR/media .
+            if [ $? != 0 ]; then
+                show_error "Backup not created" "Unknown" "Report error on XDA thread"
+            fi
             cd $dir > /dev/null 2>&1
             ;;
         2)
