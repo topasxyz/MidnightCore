@@ -6,6 +6,7 @@
 alias wget="/sbin/.core/busybox/wget"
 alias unzip="/sbin/.core/busybox/unzip"
 alias tar="/sbin/.core/busybox/tar"
+
 #============================
 # FUNCTIONS
 #============================
@@ -30,12 +31,34 @@ main_download() {
     case $BACKUP in
         1)
             echo "[+] Backing Up file: $MEDIA to: $MEDIABACKUP"
-            dir=pwd
-            cd $MEDIABACKUP > /dev/null 2>&1
-            tar -czf "$MEDIA2.tar.gz" -C $MODDIR/media .
-            if [ $? != 0 ]; then
-                show_error "Backup not created" "Unknown" "Report error on XDA thread"
-            fi
+			if [ "$INPUT" == "b" ]; then
+				if [ -f $MODDIR/media/bootanimation.zip ]; then
+					dir=pwd
+					cd $MEDIABACKUP > /dev/null 2>&1
+					tar -czf "$MEDIA2.tar.gz" -C $MODDIR/media .
+					if [ $? != 0 ]; then
+						show_error "Backup not created" "Unknown" "Report error on XDA thread"
+					fi
+				fi
+			elif [ "$INPUT" == "s" ]; then
+				if [ -d $MODDIR/media/audio ]; then
+					dir=pwd
+					cd $MEDIABACKUP > /dev/null 2>&1
+					tar -czf "$MEDIA2.tar.gz" -C $MODDIR/media .
+					if [ $? != 0 ]; then
+						show_error "Backup not created" "Unknown" "Report error on XDA thread"
+					fi
+				fi
+			elif [ "$INPUT" == "m" ]; then
+				if [ -d $MODDIR/media/audio ] || [ -f $MODDIR/media/bootanimation.zip ]; then
+					dir=pwd
+					cd $MEDIABACKUP > /dev/null 2>&1
+					tar -czf "$MEDIA2.tar.gz" -C $MODDIR/media .
+					if [ $? != 0 ]; then
+						show_error "Backup not created" "Unknown" "Report error on XDA thread"
+					fi
+				fi
+			fi
             cd $dir > /dev/null 2>&1
             ;;
         2)
@@ -101,7 +124,7 @@ device_choice() {
 check_stored() {
     clear
     echo "[+] Checking for saved version..."
-    if [ -f "$MEDIABACKUP/$MEDIA2.tar.gz" ]; then
+    if [ -f "$MEDIABACKUP/$MEDIA2.tar.gz" ] && [ -s "$MEDIABACKUP/$MEDIA2.tar.gz" ]; then
         echo "[+] Saved version detected!"
         echo "[+] Applying Files..."
         mkdir $MODDIR/media > /dev/null 2>&1
@@ -127,7 +150,7 @@ check_stored() {
         echo -e $G"       [+] Reboot for changes to take effect    "$N
         echo -e $Y"$divider"$N
     else
-        echo "[#] Saved version not found!"
+        echo "[#] Saved version not found or is empty!"
         echo "[+] Resuming Process"
         sleep 2
         main_download

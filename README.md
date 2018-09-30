@@ -28,7 +28,7 @@ That Easy!
 * For details on joining the beta stream, type 'setbeta -h' or 'setbeta --help' in a terminal.
 
 # Current Version
-v3.0.0
+v3.1.1
 Twilight Edition
 
 ## Included Fonts
@@ -154,7 +154,12 @@ Twilight Edition
 * Take Your Time(Persona5).
 
 ## Changelog
-### v3.0.0 -29.09.18
+### v3.1.0 - 30.09.18
+* Added MidnightMisc
+* Added network connectivity check for font restoration
+* Minor Syntax changes
+* Minor Flow control changes
+### v3.0.0 - 29.09.18
 * Introducing Twilight Edition!
 * Revamped User Interface!
 * Most if not all bugs squashed!

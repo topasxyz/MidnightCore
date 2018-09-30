@@ -14,7 +14,7 @@ fi
 MIDMISC="/sdcard/MidnightMain/MidnightMisc"
 MISCLOG="$MIDMISC/logs"
 MISCDUMP="$MIDMISC/dumps"
-LOGDATE="$( date | cut -d ' ' -f 1,2,3 | tr ' ' )"
+LOGDATE="$( date | cut -d ' ' -f 2,3,4 | tr ' ' '_' )"
 
 . /system/$bin/mc_init
 #===============================

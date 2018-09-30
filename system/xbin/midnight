@@ -35,6 +35,7 @@ echo "Initializing..."
 mkdir "$MIDMAIN" > /dev/null 2>&1
 mkdir "$MIDFONT" > /dev/null 2>&1
 mkdir "$MIDMEDIA" > /dev/null 2>&1
+mkdir "$MIDMISC" > /dev/null 2>&1
 clear
 #============================
 # START PROGRAM
