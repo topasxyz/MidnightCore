@@ -19,12 +19,12 @@ main_download() {
     echo "[+] Media Zip Downloaded!"
     unzip $STOREMEDIA/$MEDIA2.zip -d $STOREMEDIA > /dev/null 2>&1
     sort_zip
-	echo -e $Y"$divider"$N
+    echo -e $Y"$divider"$N
     echo -e $G"[+] Would you like to backup this zip?"$N
     echo -e $C"[+] This makes it easier to apply in the future."$N
     echo -e $C"[+] It also allows you to keep it during module updates."$N
-    echo -e $W"[+] 1) Backup  2) Don't Backup"$N
-	echo -e $Y"$divider"$N
+    echo -e $W"[1] Backup - [2] Don't Backup"$N
+    echo -e $Y"$divider"$N
     echo -e $W"[CHOOSE]:"$N
     read -r BACKUP
     case $BACKUP in
@@ -41,6 +41,9 @@ main_download() {
         2)
             echo "[+] Resuming Process..."
             ;;
+        *)
+            echo "[!] Invalid Input. Skipping Backup Process..."
+            ;;
     esac
     rm -f $MIDMEDIA/currently_applied_media.txt > /dev/null 2>&1
     touch $MIDMEDIA/currently_applied_media.txt > /dev/null 2>&1
@@ -51,7 +54,6 @@ main_download() {
     echo -e $Y"$divider"$N
     echo -e $G"             [+] Reboot for changes to take effect    "$N
     echo -e $Y"$divider"$N
-    main=false
 }
 
 audio_choice() {
@@ -124,7 +126,6 @@ check_stored() {
         echo -e $Y"$divider"$N
         echo -e $G"       [+] Reboot for changes to take effect    "$N
         echo -e $Y"$divider"$N
-        main=false
     else
         echo "[#] Saved version not found!"
         echo "[+] Resuming Process"
@@ -172,44 +173,59 @@ sort_zip() {
         elif [ ! -d $STOREMEDIA/audio ]; then
             echo "[+] This option only contains a bootanimation file."
             echo "[+] Would you like to continue anyways:"
-            echo "[+] 1) Yes   2) No"
-            echo -e $W"[CHOOSE]:"$N
-            read -r BOTH
-            case $BOTH in
-                y)
-                    mkdir $MODDIR/media > /dev/null 2>&1
-                    mv -f $STOREMEDIA/bootanimation.zip $MODDIR/media > /dev/null 2>&1
-                    chmod 644 $MODDIR/media/bootanimation.zip
-                    echo "[+] Bootanimation sorted"
-                    ;;
-                n)
-                    echo "[+] Resuming Process..."
-                    ;;
-            esac
+            echo "[1] Yes - [2] No"
+            pass=true
+            while [ "$pass" == true ]; do
+                echo -e $W"[CHOOSE]:"$N
+                read -r BOTH
+                case $BOTH in
+                    y)
+                           mkdir $MODDIR/media > /dev/null 2>&1
+                        mv -f $STOREMEDIA/bootanimation.zip $MODDIR/media > /dev/null 2>&1
+                        chmod 644 $MODDIR/media/bootanimation.zip
+                           echo "[+] Bootanimation sorted"
+                        pass=false
+                        ;;
+                    n)
+                        echo "[+] Resuming Process..."
+                        pass=false
+                        ;;
+                    *)
+                        echo "[!] Invalid Input."
+                        ;;
+                esac
+            done
         elif [ ! -f $STOREMEDIA/bootanimation.zip ]; then
             echo "[+] This option only contains an Audio folder."
             echo "[+] Would you like to continue anyways:"
-            echo "[+] 1) Yes   2) No"
-            echo -e $W"[CHOOSE]:"$N
-            read -r BOTH
-            case $BOTH in
-                y)
-                    mkdir $MODDIR/media > /dev/null 2>&1
-                    mv -f $STOREMEDIA/audio $MODDIR/media > /dev/null 2>&1
-                    touch $MODDIR/audio/.replace
-                    echo "[+] Setting audio file permissions..."
-                    chmod 755 $MODDIR/audio
-                    chmod 755 $MODDIR/audio/*
-                    chmod 777 $MODDIR/audio/ui/*
-                    chmod 777 $MODDIR/audio/notifications/*
-                    chmod 777 $MODDIR/audio/alarms/*
-                    chmod 777 $MODDIR/audio/ringtones/*
-                    echo "[+] Permissions Set!"
-                    ;;
-                n)
-                    echo "[+] Resuming Process..."
-                    ;;
-            esac
+            echo "[1] Yes - [2] No"
+            pass=true
+            while [ "$pass" == true ]; do
+                echo -e $W"[CHOOSE]:"$N
+                read -r BOTH
+                case $BOTH in
+                    y)
+                        mkdir $MODDIR/media > /dev/null 2>&1
+                        mv -f $STOREMEDIA/audio $MODDIR/media > /dev/null 2>&1
+                        touch $MODDIR/audio/.replace
+                        echo "[+] Setting audio file permissions..."
+                        chmod 755 $MODDIR/audio
+                        chmod 755 $MODDIR/audio/*
+                        chmod 777 $MODDIR/audio/ui/*
+                        chmod 777 $MODDIR/audio/notifications/*
+                        chmod 777 $MODDIR/audio/alarms/*
+                        chmod 777 $MODDIR/audio/ringtones/*
+                        echo "[+] Permissions Set!"
+                        pass=false
+                        ;;
+                    n)
+                        echo "[+] Resuming Process..."
+                        pass=false
+                        ;;
+                    *)
+                        echo "[!] Invalid Input."
+                esac
+            done
         fi
     fi
 }

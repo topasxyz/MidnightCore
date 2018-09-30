@@ -35,7 +35,6 @@ zip_sort_no_store() {
         echo -e $Y"$divider"$N
         echo -e $R" [+] Reboot for changes to take effect!!  "$N
         echo -e $Y"$divider"$N
-        main=false
     fi
 }
 
@@ -63,7 +62,6 @@ zip_sort_store() {
         echo -e $Y"$divider"$N
         echo -e $R"      [+] Reboot for changes to take effect!!  "$N
         echo -e $Y"$divider"$N
-        main=false
     fi
 }
 
@@ -111,7 +109,6 @@ check_stored() {
         echo -e $Y"$divider"$N
         echo -e $R" [+] Reboot for changes to take effect!!  "$N
         echo -e $Y"$divider"$N
-        main=false
     else
         echo "[#] Saved version not found!"
         echo "[+] Resuming Process.."

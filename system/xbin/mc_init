@@ -1,5 +1,4 @@
 #!/system/bin/sh
-. /sbin/.core/mirror/bin/util_functions.sh
 divider='========================================================' > /dev/null 2>&1
 # COLORS
 #==================================
@@ -31,6 +30,8 @@ fonts_frontend=/system/$bin/midnight_fonts_frontend
 fonts_backend=/system/$bin/midnight_fonts_backend
 media_frontend=/system/$bin/midnight_media_frontend
 media_backend=/system/$bin/midnight_media_backend
+misc_frontend=/system/$bin/midnight_misc_frontend
+misc_backend=/system/$bin/midnight_misc_backend
 #==================================
 # FUNCTIONS
 #==================================
@@ -54,7 +55,7 @@ main_start () {
         sleep 0.2
         echo "[#] Choose from one of the below aspects to modify and make your device yours"
         echo "[#] Enter a corresponding number below"
-        echo -e $G"[1] MidnightFonts      [2] MidnightMedia"$N
+        echo -e $G"[1] MidnightFonts - [2] MidnightMedia - [3] MidnightMisc"$N
         echo -e $C"[r] Restore Defaults"$N      $R"[q] Quit"$N
         echo -e -n $W"[CHOOSE]: "$N
         read -r INPUT
@@ -66,8 +67,8 @@ main_start () {
                 echo -e $Y"$divider"$N
                 sleep 4
                 clear
-                sh $fonts_frontend
-                running=false
+                . $fonts_frontend
+                clear
                 ;;
             2)
                 echo -e $Y"$divider"$N
@@ -76,18 +77,29 @@ main_start () {
                 echo -e $Y"$divider"$N
                 sleep 4
                 clear
-                sh $media_frontend
-                running=false
+                . $media_frontend
+                clear
+                ;;
+            3)
+                echo -e $Y"$divider"$N
+                echo "[+] INITIALIZING MIDNIGHTMISC..."
+                echo "[+] OPTIMIZE YOUR DEVICE AND GET DIFFERENT TYPES OF LOGS WITH THIS MODULE!"
+                echo -e $Y"$divider"$N
+                sleep 4
+                clear
+                . $misc_frontend
+                clear
                 ;;
             r)
                 restore
-                running=false
+                clear
                 ;;
             q)
                 running=false
                 ;;
             *)
                 echo "[+] Unrecognized Input."
+                clear
                 ;;
         esac
     done
