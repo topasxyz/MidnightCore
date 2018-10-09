@@ -15,6 +15,7 @@ fi
 MIDFONT="/sdcard/MidnightMain/MidnightFonts"
 STOREFONT="$MIDFONT/tmp_fonts"
 FONTBACKUP="$MIDFONT/Backup"
+CUSTOMFONT="$MIDFONT/Custom_Fonts"
 if [ -f "$MIDFONT/currently_applied_font.txt" ]; then
     CURRENT=$G"$( cat $MIDFONT/currently_applied_font.txt )"$N
 else
@@ -25,6 +26,7 @@ fi
 #================================
 mkdir -p $STOREFONT > /dev/null 2>&1
 mkdir -p $FONTBACKUP > /dev/null 2>&1
+mkdir -p $CUSTOMFONT > /dev/null 2>&1
 echo "[+] Setting Up Environment..."
 wget --no-check-certificate -q -O $STOREFONT/font-list "https://ncloud.zaclys.com/index.php/s/jWG7VgSePf30Dat/download"
 if [ $? != 0 ]; then
@@ -52,15 +54,25 @@ do
     echo -e $Y"$divider"$N
     echo -e $G"       A   M I D N I G H T   M O D U L E       "$N
     echo -e $Y"$divider"$N
+    sleep 0.2
     echo "             Applied: $CURRENT      "
     echo -e $Y"$divider"$N
+    sleep 0.2
     echo "[+] Choose From the selection of fonts offered below"
     echo "[+] Enter a corresponding Number"
     echo ""
-    cat $STOREFONT/font-list
+    sleep 0.2
+    i=1
+    fonts=$( cat $STOREFONT/font-list | tr ' ' '*' )
+    for font in $fonts; do
+        word=$( echo $font | tr '*' ' ' )
+        echo -e "$C[$i]$N $W$word$N"
+        i=$((i+1))
+    done
     list_len=$( cat $STOREFONT/font-list | wc -l )
     echo ""
-    echo "[q] Quit"
+    echo -e $R"[q] Quit"$N
+    echo -e $G"[custom] Specify Custom Font"$N
     echo ""
     pass=true
     while [ "$pass" == true ]; do
@@ -71,14 +83,19 @@ do
                 if [ "$INPUT" == "q" ]; then
                     pass=false
                     main=false
+                elif [ "$INPUT" == "custom" ]; then
+                    apply_custom
                 elif [ $INPUT -gt $list_len ]; then
                     echo "[!] Invalid Input."
                 else
                     LINK="$( cat $STOREFONT/font-link-list | xargs | cut -d '?' -f $INPUT | tr -d ' ' )"
                     FONT="$( cat $STOREFONT/font-list | xargs | cut -d '.' -f $INPUT )"
                     FONT2="$( echo $FONT | cut -d ']' -f 2 | tr -d ' ' )"
+                    restored=false
                     check_stored
-                    font_steps
+                    if [ "$restored" == false ]; then
+                        font_steps
+                    fi
                     pass=false
                     main=false
                 fi

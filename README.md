@@ -12,23 +12,22 @@ This module is an All-In-One package for the MidnightModule series. It currently
 ### MidnightDNS(Under Re-design!)
 * This package allows you to systemlessly change your DNS server for speed, security, protection or privacy benefits.
 
+## Custom Support
+Is your favourite Font, Bootanimation or Audio file not available in MidnightCore? Not to worry! V3.2.0 Brings custom file support! Easily apply custom files with a couple simple steps. Simply run the module, select the 'apply custom' option and follow the instructions!
+
 ## How To Use
 ```bash
-su
-
-cd
-
 midnight
 ```
 
-That Easy!
+That's It!
 
 #### Note:
 * All files available in this module are all being hosted by me, so the font list and media list will be maintained regularly and updated.
 * For details on joining the beta stream, type 'setbeta -h' or 'setbeta --help' in a terminal.
 
 # Current Version
-v3.1.1
+v3.2.0
 Twilight Edition
 
 ## Included Fonts
@@ -97,14 +96,9 @@ Twilight Edition
 * Shamu(Nexus 6).
 * Volantis(Nexus 9).
 * OnePlus.
-* xXxNoLimits(Custom ROM).
-* LiquidRemix(Custom ROM).
 * Asus.
-* Zenfone_Atomic(Custom Rom).
 * Samsung Galaxy Note 3.
-* AOSIP(N5).
 * Bullhead(Nexus 5).
-* Pixel 2.
 
 ## Included Bootanimation Files
 * Hammerhead(Nexus 5).
@@ -154,6 +148,15 @@ Twilight Edition
 * Take Your Time(Persona5).
 
 ## Changelog
+### v3.2.0 - 09.10.18
+* Added support for HTC devices
+* Added support for applying custom fonts!
+* Added support for applying custom Bootanimations!
+* Added support for applying custom Audio files!
+* Removed need to type 'su' and 'cd'!
+* Custom file support for Samsungs .qmg file format
+* Misc Code cleanups
+* Changed method of setting file permissions
 ### v3.1.0 - 30.09.18
 * Added MidnightMisc
 * Added network connectivity check for font restoration

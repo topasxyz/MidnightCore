@@ -55,6 +55,7 @@ main_start () {
         sleep 0.2
         echo "[#] Choose from one of the below aspects to modify and make your device yours"
         echo "[#] Enter a corresponding number below"
+        sleep 0.2
         echo -e $G"[1] MidnightFonts - [2] MidnightMedia - [3] MidnightMisc"$N
         echo -e $C"[r] Restore Defaults"$N      $R"[q] Quit"$N
         echo -e -n $W"[CHOOSE]: "$N
@@ -149,13 +150,20 @@ show_error() {
 }
 
 cleanup() {
-    echo "[+] Cleaning Up..."
+    clear
+    echo -e $Y"$divider"$N
+    echo -e $P"[+] Cleaning Up..."$N
     MidFont=/sdcard/MidnightMain/MidnightFonts
     MidMedia=/sdcard/MidnightMain/MidnightMedia
     rm -rf $MidMedia/tmp_media > /dev/null 2>&1
     rm -rf $MidFont/tmp_fonts > /dev/null 2>&1
-    echo "[+] Done!"
-    echo "[+] T H A N K S ! ! !"
+    echo -e $G"[+] Done!"$N
+    echo -e $G""$N
+    echo -e $G"  _______ __  __ ____  _  __ __ __    __  __ __  "$N
+    echo -e $G" /__  __// /_/ // _  \/ \/ // // /   / / / / \/  "$N
+    echo -e $G"   / /  / __  // /_/ /    //    /   / /_/ /  __  "$N
+    echo -e $G"  /_/  /_/ /_//_/ /_/_/\_//__/\_\  /_____/  /_/  "$N
+    echo -e $Y"$divider"$N
     exit
 }
 #==================================
