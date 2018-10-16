@@ -1,5 +1,5 @@
 #!/system/bin/sh
-divider='========================================================' > /dev/null 2>&1
+divider='=============================================================' > /dev/null 2>&1
 # COLORS
 #==================================
 BL='\e[01;90m' > /dev/null 2>&1; # Black
@@ -32,6 +32,8 @@ media_frontend=/system/$bin/midnight_media_frontend
 media_backend=/system/$bin/midnight_media_backend
 misc_frontend=/system/$bin/midnight_misc_frontend
 misc_backend=/system/$bin/midnight_misc_backend
+custom_frontend=/system/$bin/midnight_custom_frontend
+custom_backend=/system/$bin/midnight_custom_backend
 #==================================
 # FUNCTIONS
 #==================================
@@ -57,6 +59,7 @@ main_start () {
         echo "[#] Enter a corresponding number below"
         sleep 0.2
         echo -e $G"[1] MidnightFonts - [2] MidnightMedia - [3] MidnightMisc"$N
+        echo -e $G"[4] MidnightCustom"$N
         echo -e $C"[r] Restore Defaults"$N      $R"[q] Quit"$N
         echo -e -n $W"[CHOOSE]: "$N
         read -r INPUT
@@ -91,6 +94,16 @@ main_start () {
                 . $misc_frontend
                 clear
                 ;;
+            4)
+                echo -e $Y"$divider"$N
+                echo "[+] INITIALIZING MIDNIGHTCUSTOM..."
+                echo "[+] SPECIFY AND APPLY CUSTOM FONTS, BOOTANIMATIONS AND AUDIO FILES!"
+                echo -e $Y"$divider"$N
+                sleep 4
+                clear
+                . $custom_frontend
+                clear
+                ;;
             r)
                 restore
                 clear
@@ -117,14 +130,15 @@ restore () {
         case $RESTORE in
             1)
                 echo "[+] Restoring defaults..."
-                rm -rf $magisk/MidnightCore/system/fonts
+                rm -rf $magisk/MidnightCore/system/fonts > /dev/null 2>&1
                 echo "[+] Defaults restored!"
                 res=false
                 exit
                 ;;
             2)
                 echo "[+] Restoring defaults..."
-                rm -rf $magisk/MidnightCore/system/media
+                rm -rf $magisk/MidnightCore/system/media > /dev/null 2>&1
+                rm -rf /data/adb/magisk_simple > /dev/null 2&1
                 echo "[+] Defaults restored!"
                 res=false
                 exit
@@ -159,10 +173,10 @@ cleanup() {
     rm -rf $MidFont/tmp_fonts > /dev/null 2>&1
     echo -e $G"[+] Done!"$N
     echo -e $G""$N
-    echo -e $G"  _______ __  __ ____  _  __ __ __    __  __ __  "$N
-    echo -e $G" /__  __// /_/ // _  \/ \/ // // /   / / / / \/  "$N
-    echo -e $G"   / /  / __  // /_/ /    //    /   / /_/ /  __  "$N
-    echo -e $G"  /_/  /_/ /_//_/ /_/_/\_//__/\_\  /_____/  /_/  "$N
+    echo -e $G"      _______ __  __ ____  _  __ __ __    __  __ __      "$N
+    echo -e $G"     /__  __// /_/ // _  \/ \/ // // /   / / / / \/      "$N
+    echo -e $G"       / /  / __  // /_/ /    //    /   / /_/ /  __      "$N
+    echo -e $G"      /_/  /_/ /_//_/ /_/_/\_//__/\_\  /_____/  /_/      "$N
     echo -e $Y"$divider"$N
     exit
 }
