@@ -56,6 +56,9 @@ apply_fonts() {
                                     FONT="$( ls $CUSTOMFONTS | xargs | tr ' ' '*' | cut -d '*' -f $CHOICE )"
                                     echo "[+] Applying $FONT..."
                                     mkdir $MODDIR/fonts > /dev/null 2>&1
+                                    mkdir $MODDIR/etc > /dev/null 2>&1
+                                    cp -f $MIDFONT/fonts.xml $MODDIR/etc > /dev/null 2>&1
+                                    chmod 644 $MODDIR/etc/fonts.xml > /dev/null 2>&1
                                     cp -f $CUSTOMFONTS/$FONT/* $MODDIR/fonts
                                     echo "[+] Setting Permisssions..."
                                     chmod 644 $MODDIR/fonts/*
@@ -139,23 +142,24 @@ apply_anims() {
                                     echo -e $R"[!] Invalid Input."$N
                                 else
                                     clear
-                                    ANIM="$( ls $CUSTOMANIMS | xargs | tr ' ' '*' | cut -d '*' -f $CHOICE )"
-                                    echo "[+] Applying $ANIM..."
+                                    ANIM2="$( ls $CUSTOMANIMS | xargs | tr ' ' '*' | cut -d '*' -f $CHOICE )"
+                                    echo "[+] Applying $ANIM2..."
+                                    rm -rf $MOUNTFOL$ANIMFOLDER > /dev/null
                                     mkdir -p $MOUNTFOL$ANIMFOLDER > /dev/null 2>&1
-                                    fol_len=$( ls $CUSTOMANIMS/$ANIM | wc -l )
+                                    fol_len=$( ls $CUSTOMANIMS/$ANIM2 | wc -l )
                                     if [ $fol_len -gt 1 ]; then
-                                        echo -e $R"[!] Wrong Custom Folder Formatting in: $CUSTOMANIMS/$ANIM"$N
+                                        echo -e $R"[!] Wrong Custom Folder Formatting in: $CUSTOMANIMS/$ANIM2"$N
                                         echo -e $R"[!] Make Sure It Is Only One File Per Folder"$N
                                         animspass=false
                                         applying=false
                                         pass=false
                                     else
-                                        cp -f $CUSTOMANIMS/$ANIM $MOUNTFOL$ANIMFOLDER$ANIM
+                                        cp -f $CUSTOMANIMS/$ANIM2/* $MOUNTFOL$ANIMFOLDER$ANIM
                                         echo "[+] Setting Permisssions..."
                                         chmod 644 $MOUNTFOL$ANIMFOLDER$ANIM
                                         rm -f $MIDCUSTOM/Media/currently_applied_custom_bootanim.txt > /dev/null 2>&1
                                         touch $MIDCUSTOM/Media/currently_applied_custom_bootanim.txt > /dev/null 2>&1
-                                        echo $ANIM > $MIDCUSTOM/Media/currently_applied_custom_bootanim.txt > /dev/null 2>&1
+                                        echo $ANIM2 > $MIDCUSTOM/Media/currently_applied_custom_bootanim.txt > /dev/null 2>&1
                                         echo "[+] Permissions Set!"
                                         echo -e $G"          [+] Bootanimation Applied!!             "$N
                                         echo -e $Y"$divider"$N
