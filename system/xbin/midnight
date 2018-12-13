@@ -12,7 +12,7 @@ fi
 #============================
 # VARIABLES
 #============================
-alias wget="/sbin/.core/busybox/wget"
+alias wget="/sbin/.magisk/busybox/wget"
 . /data/adb/magisk/util_functions.sh
 MIDMAIN="/sdcard/MidnightMain"
 MIDFONT="$MIDMAIN/MidnightFonts"
@@ -30,7 +30,6 @@ else
     ANIM="bootanimation.zip"
 fi
 MOUNTFOL="/data/adb/magisk_simple/system"
-divider='==================================================' > /dev/null 2>&1
 if [ -d /system/xbin ]; then
     bin=xbin
 else

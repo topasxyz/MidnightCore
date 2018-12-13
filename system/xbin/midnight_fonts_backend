@@ -3,8 +3,8 @@
 #===============================
 # MAGISK ALIAS'
 #===============================
-alias unzip="/sbin/.core/busybox/unzip"
-alias wget="/sbin/.core/busybox/wget"
+alias unzip="/sbin/.magisk/busybox/unzip"
+alias wget="/sbin/.magisk/busybox/wget"
 #===============================
 # FUNCTIONS
 #===============================
@@ -33,10 +33,10 @@ zip_sort_no_store() {
         touch $MIDFONT/currently_applied_font.txt > /dev/null 2>&1
         echo $FONT > $MIDFONT/currently_applied_font.txt
         clear
-        echo -e $G"                [+] Font Applied!!                 "$N
-        echo -e $Y"$divider"$N
-        echo -e $R"     [+] Please reboot for changes to apply!!      "$N
-        echo -e $Y"$divider"$N
+        center '[+] Font Applied!!'
+        divider "="
+        center '[+] Please reboot for changes to apply!!'
+        divider "="
         sleep 3
     fi
 }
@@ -63,12 +63,13 @@ zip_sort_store() {
         rm -f $MIDFONT/currently_applied_font.txt > /dev/null 2>&1
         touch $MIDFONT/currently_applied_font.txt > /dev/null 2>&1
         echo $FONT > $MIDFONT/currently_applied_font.txt
+	sleep 2
         clear
-        echo -e $Y"$divider"$N
-        echo -e $G"        [+] Font Applied and Saved!!           "$N
-        echo -e $Y"$divider"$N
-        echo -e $R"   [+] Please reboot for changes to apply!!    "$N
-        echo -e $Y"$divider"$N
+        divider "="
+        center '[+] Font Applied and Saved!!'
+        divider "="
+        center '[+] Please reboot for changes to apply!!'
+        divider "="
         sleep 3
     fi
 }
@@ -117,10 +118,10 @@ check_stored() {
         touch $MIDFONT/currently_applied_font.txt > /dev/null 2>&1
         echo $FONT > $MIDFONT/currently_applied_font.txt
         clear
-        echo -e $G"                [+] Font Applied!!                  "$N
-        echo -e $Y"$divider"$N
-        echo -e $R"      [+] Please reboot for changes to apply!!      "$N
-        echo -e $Y"$divider"$N
+        center '[+] Font Applied!!'
+        divider "="
+        center '[+] Please reboot for changes to apply!!'
+        divider "="
         sleep 3
         restored=true
     else
